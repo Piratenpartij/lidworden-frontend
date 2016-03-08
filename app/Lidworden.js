@@ -237,16 +237,16 @@ class Lidworden extends Component {
             </Row>
             <Row>
               <OurInput xs={12} sm={3} label="Postcode" required modifier={this.postcodeModifier} validator={this.postcodeValidator.bind(this)} name="postcode"/>
-              <OurInput xs={12} sm={3} label="Huisnummer" required name="huisnummer" modifier={this.huisnummerModifier} validator={this.huisnummerValidator.bind(this)}/> {huisletterLijst}
+              <OurInput xs={12} sm={3} label="Huisnummer" required name="huisnummer" modifier={this.huisnummerModifier} validator={this.huisnummerValidator.bind(this)} type="number"/> {huisletterLijst}
               {huisnummertoevoegingLijst}
             </Row>
             {adresBlok}
             <Row>
-              <OurInput xs={12} sm={6} label="E-mailadres" required validator={validator.isEmail} name="email"/>
-              <OurInput xs={12} sm={6} label="E-mailadres (herhaling)" required validator={this.emailHerhalingValidator.bind(this)} name="emailHerhaling"/>
+              <OurInput xs={12} sm={6} label="E-mailadres" required validator={validator.isEmail} name="email" type="email" />
+              <OurInput xs={12} sm={6} label="E-mailadres (herhaling)" required validator={this.emailHerhalingValidator.bind(this)} name="emailHerhaling" type="email" />
             </Row>
             <Row>
-              <OurInput xs={12} label="Telefoonnummer" validator={this.telefoonValidator} modifier={this.telefoonModifier} name="telefoon"/>
+              <OurInput xs={12} label="Telefoonnummer" validator={this.telefoonValidator} modifier={this.telefoonModifier} name="telefoon" type="tel" />
             </Row>
             <Row>
               <Col xs={12}>

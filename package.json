@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server --progress --host 0.0.0.0",
     "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress --display-modules"
   },
   "main": "index.js",
