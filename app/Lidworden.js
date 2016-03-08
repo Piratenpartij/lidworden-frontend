@@ -249,6 +249,7 @@ class Lidworden extends Component {
           <p>Mooi, je wilt dus lid worden!</p>
           <p>Vul het formulier in en klik op verzenden.</p>
           <p>Velden gemarkeerd met * zijn verplicht.</p>
+	  <p>Na het invullen van postcode & huisnummer wordt het adres automatisch ingevuld.</p>
         </Col>
         <Col xs={12} md={8}>
           <OurForm onSubmit={this.onSubmit.bind(this)} onChange={this.onChange.bind(this)} valueObject={this.state.formValues}>
