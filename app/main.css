@@ -3,3 +3,6 @@
     src:  url('font/LucidaGrande.woff2') format('woff2'),
           url('font/LucidaGrande.woff') format('woff');
 }
+.container {
+  margin-bottom: 15px;
+}

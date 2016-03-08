@@ -4,7 +4,8 @@ import {
   Row,
   Col,
   Button,
-  Input
+  Input,
+  Image
 } from 'react-bootstrap';
 import LogoImg from './img/PPLogo-st-black.svg';
 import OurInput from './OurInput';
@@ -275,7 +276,8 @@ class Lidworden extends Component {
 
     return (
       <Grid>
-        <img src={LogoImg}/> {screenContent}
+        <Image src={LogoImg} responsive />
+        {screenContent}
       </Grid>
     );
   }
