@@ -77,7 +77,7 @@ class OurForm extends Component {
     this.setState(update(this.state, {
       fieldsDirty: {
         [name]: {
-          $set: val
+          $set: true
         }
       }
     }));
