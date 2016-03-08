@@ -13,7 +13,9 @@ import OurForm from './OurForm';
 import validator from 'validator';
 import update from 'react-addons-update';
 import 'whatwg-fetch';
+import promise from 'es6-promise';
 import debounce from 'es6-promise-debounce';
+
 
 class Lidworden extends Component {
 
@@ -149,8 +151,7 @@ class Lidworden extends Component {
 
       if (responseData.ok == 1) {
         this.setState({screenMode: 'submitted'});
-      }
-      else {
+      } else {
         this.setState({screenMode: 'error'});
       }
     }).catch((error) => {
@@ -218,6 +219,27 @@ class Lidworden extends Component {
       }
     }
 
+    if (!adresBlok) {
+      adresBlok = <Row>
+        <Col xs={12} sm={6}>
+          <div className="form-group has-feedback">
+            <label className="control-label">
+              <span>Adres</span>
+            </label>
+            <p className="form-control form-control-static" style={{
+              height: 'auto'
+            }} disabled>
+              &nbsp;
+              <br/>
+              &nbsp;
+            </p>
+            <span className="glyphicon form-control-feedback"></span>
+          </div>
+        </Col>
+      </Row>;
+
+    }
+
     let screenContent;
 
     if (this.state.screenMode == 'form') {
@@ -242,11 +264,11 @@ class Lidworden extends Component {
             </Row>
             {adresBlok}
             <Row>
-              <OurInput xs={12} sm={6} label="E-mailadres" required validator={validator.isEmail} name="email" type="email" />
-              <OurInput xs={12} sm={6} label="E-mailadres (herhaling)" required validator={this.emailHerhalingValidator.bind(this)} name="emailHerhaling" type="email" />
+              <OurInput xs={12} sm={6} label="E-mailadres" required validator={validator.isEmail} name="email" type="email"/>
+              <OurInput xs={12} sm={6} label="E-mailadres (herhaling)" required validator={this.emailHerhalingValidator.bind(this)} name="emailHerhaling" type="email"/>
             </Row>
             <Row>
-              <OurInput xs={12} label="Telefoonnummer" validator={this.telefoonValidator} modifier={this.telefoonModifier} name="telefoon" type="tel" />
+              <OurInput xs={12} label="Telefoonnummer" validator={this.telefoonValidator} modifier={this.telefoonModifier} name="telefoon" type="tel"/>
             </Row>
             <Row>
               <Col xs={12}>
@@ -262,13 +284,11 @@ class Lidworden extends Component {
         <br/><br/>
         Er volgt nu een handmatige controle, waarna we per e-mail contact met je zullen opnemen over de eerste contributiebetaling.
       </div>;
-    }
-    else if (this.state.screenMode == 'error') {
+    } else if (this.state.screenMode == 'error') {
       screenContent = <div>
         Er is iets fout gegaan bij het versturen van de gegevens.. Neem bij aanhoudende problemen s.v.p. contact op met ict@piratenpartij.nl !
       </div>
-    }
-    else if (this.state.screenMode == 'submitting') {
+    } else if (this.state.screenMode == 'submitting') {
       screenContent = <div>
         even geduld...
       </div>
@@ -276,7 +296,9 @@ class Lidworden extends Component {
 
     return (
       <Grid>
-        <Image src={LogoImg} responsive />
+        <div className="page-header">
+          <Image src={LogoImg} responsive/>
+        </div>
         {screenContent}
       </Grid>
     );

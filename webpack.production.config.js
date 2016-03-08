@@ -20,11 +20,8 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader?' + JSON.stringify({discardComments: {removeAll: true}}))
       }, {
-        test: /\.(svg|ttf|woff|woff2|eot)$/,
+        test: /\.(svg|ttf|woff|woff2|eot|png|jpg)$/,
         loader: 'file-loader'
-      }, {
-        test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
       }
 
     ]
