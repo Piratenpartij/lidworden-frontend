@@ -324,8 +324,8 @@ class Lidworden extends Component {
             <p>
               Persoonsgegevens worden verwerkt in overeenkomst met ons{' '}
               <a href="https://piratenpartij.nl/privacybeleid/" target="_blank">
-                privacybeleid.
-              </a>
+                privacybeleid
+              </a>.
             </p>
           </Col>
           <Col xs={12} md={8}>
