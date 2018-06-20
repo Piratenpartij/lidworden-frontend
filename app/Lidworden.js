@@ -89,7 +89,7 @@ class Lidworden extends Component {
             $set: val,
           },
         },
-      }),
+      })
     );
 
     if (
@@ -106,8 +106,8 @@ class Lidworden extends Component {
           curVal.postcode,
           curVal.huisnummer,
           curVal.huisletter,
-          curVal.huisnummertoevoeging,
-        ),
+          curVal.huisnummertoevoeging
+        )
       );
     }
   }
@@ -258,7 +258,7 @@ class Lidworden extends Component {
                 <option key={letter} value={letter}>
                   {letter == '-' ? '-geen-' : letter}
                 </option>
-              ),
+              )
             )}
           </OurInput>
         );
@@ -320,6 +320,13 @@ class Lidworden extends Component {
             </p>
 
             <p>De contributie bedraagt € 17,50 per kalenderjaar.</p>
+
+            <p>
+              Persoonsgegevens worden verwerkt in overeenkomst met ons{' '}
+              <a href="https://piratenpartij.nl/privacybeleid/" target="_blank">
+                privacybeleid.
+              </a>
+            </p>
           </Col>
           <Col xs={12} md={8}>
             <OurForm
