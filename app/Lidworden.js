@@ -319,7 +319,7 @@ class Lidworden extends Component {
               automatisch ingevuld.
             </p>
 
-            <p>De contributie bedraagt € 17,50 per kalenderjaar.</p>
+            <p>De contributie bedraagt € 19,84 per kalenderjaar.</p>
 
             <p>
               Persoonsgegevens worden verwerkt in overeenkomst met ons{' '}
