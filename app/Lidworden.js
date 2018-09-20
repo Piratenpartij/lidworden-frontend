@@ -403,6 +403,7 @@ class Lidworden extends Component {
               <Row>
                 <OurInput
                   xs={12}
+                  sm={6}
                   label="Telefoonnummer"
                   validator={this.telefoonValidator}
                   modifier={this.telefoonModifier}
@@ -411,7 +412,7 @@ class Lidworden extends Component {
                 />
               </Row>
               <Row>
-                <Col xs={12}>
+                <Col xs={12} sm={6}>
                   <Button type="submit">Verzenden</Button>
                 </Col>
               </Row>
