@@ -24,7 +24,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-    "bootstrap": "^3.3.6",
+    "bootstrap": "^4.1.2",
     "es6-promise": "^3.1.2",
     "es6-promise-debounce": "^1.0.1",
     "file-loader": "^0.8.5",
