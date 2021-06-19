@@ -29,3 +29,7 @@ button {
 .btn-primary {
   border-width: 0 !important;
 }
+
+p.form-control {
+  background-color: lightgrey;
+}

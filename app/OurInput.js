@@ -29,6 +29,10 @@ class OurInput extends Component {
             {this.props.label + (this.props.required ? "*" : "")}
           </label>
           <Form.Control
+            isValid={this.props.bsStyle === "success"}
+            isInvalid={
+              this.props.bsStyle === "warning" || this.props.bsStyle === "error"
+            }
             type={this.props.type}
             as={this.props.as}
             onChange={this.onChange.bind(this)}
