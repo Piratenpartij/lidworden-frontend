@@ -229,7 +229,7 @@ class Lidworden extends Component {
           <OurInput
             xs={12}
             sm={3}
-            type="select"
+            as="select"
             label="Huisletter"
             required
             name="huisletter"
@@ -252,7 +252,7 @@ class Lidworden extends Component {
           <OurInput
             xs={12}
             sm={3}
-            type="select"
+            as="select"
             label="Huisnummertoevoeging"
             required
             name="huisnummertoevoeging"
@@ -318,7 +318,7 @@ class Lidworden extends Component {
               dan naar{" "}
               <a href="mailto:bestuur@piratenpartij.nl">
                 bestuur@piratenpartij.nl
-              </a>{" "}
+              </a>
               .
             </p>
 

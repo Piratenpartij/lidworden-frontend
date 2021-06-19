@@ -30,6 +30,7 @@ class OurInput extends Component {
           </label>
           <Form.Control
             type={this.props.type}
+            as={this.props.as}
             onChange={this.onChange.bind(this)}
             value={this.props.value}
           >
@@ -45,6 +46,7 @@ export default OurInput;
 
 OurInput.propTypes = {
   type: PropTypes.string.isRequired,
+  as: PropTypes.string,
   label: PropTypes.string.isRequired,
   required: PropTypes.bool.isRequired,
   validator: PropTypes.func,
