@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
-import { Grid, Row, Col, Button, Input, Image } from 'react-bootstrap';
-import LogoImg from './img/PPLogo-st-black.svg';
-import OurInput from './OurInput';
-import OurForm from './OurForm';
-import validator from 'validator';
-import update from 'react-addons-update';
-import 'whatwg-fetch';
-import promise from 'es6-promise';
-import debounce from 'es6-promise-debounce';
+import React, { Component } from "react";
+import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import LogoImg from "./img/PPLogo-st-black.svg";
+import OurInput from "./OurInput";
+import OurForm from "./OurForm";
+import validator from "validator";
+import update from "react-addons-update";
+import "whatwg-fetch";
+import promise from "es6-promise";
+import debounce from "es6-promise-debounce";
 
 class Lidworden extends Component {
   constructor() {
     super();
     this.state = {
       formValues: {
-        telefoon: '',
-        tussenvoegsel: '',
+        telefoon: "",
+        tussenvoegsel: "",
+        achternaam: "",
+        voornaam: "",
+        email: "",
+        emailHerhaling: "",
+        huisnummer: "",
+        postcode: ""
       },
-      screenMode: 'form',
+      screenMode: "form"
     };
 
     this.debouncedFunction = debounce(function() {
@@ -37,15 +43,15 @@ class Lidworden extends Component {
 
   telefoonModifier(value) {
     if (value && value.match(/^[1-9]/)) {
-      value = '0' + value;
+      value = "0" + value;
     }
     if (value.match(/^00/)) {
-      value = '0';
+      value = "0";
     }
     if (value.length > 10) {
       value = value.substring(0, 10);
     }
-    return value.replace(new RegExp('[^0-9]', 'g'), '');
+    return value.replace(new RegExp("[^0-9]", "g"), "");
   }
 
   emailHerhalingValidator(value) {
@@ -58,13 +64,13 @@ class Lidworden extends Component {
 
   postcodeModifier(value) {
     value = value.toUpperCase();
-    value = value.replace(new RegExp('[^0-9A-Z]', 'g'), '');
+    value = value.replace(new RegExp("[^0-9A-Z]", "g"), "");
     value = value.substring(0, 6);
     return value;
   }
 
   huisnummerModifier(value) {
-    return value.replace(new RegExp('[^0-9]', 'g'), '');
+    return value.replace(new RegExp("[^0-9]", "g"), "");
   }
 
   postcodeValidator(value) {
@@ -86,17 +92,17 @@ class Lidworden extends Component {
       update(this.state, {
         formValues: {
           [key]: {
-            $set: val,
-          },
-        },
+            $set: val
+          }
+        }
       })
     );
 
     if (
-      key == 'postcode' ||
-      key == 'huisnummer' ||
-      key == 'huisletter' ||
-      key == 'huisnummertoevoeging'
+      key == "postcode" ||
+      key == "huisnummer" ||
+      key == "huisletter" ||
+      key == "huisnummertoevoeging"
     ) {
       let curVal = this.state.formValues;
       curVal[key] = val;
@@ -113,23 +119,23 @@ class Lidworden extends Component {
   }
 
   lookupAddress(postcode, huisnummer, huisletter, huisnummertoevoeging) {
-    let baseUrl = 'https://lidworden.piratenpartij.nl/cgi-bin/adres.pl';
+    let baseUrl = "https://lidworden.piratenpartij.nl/cgi-bin/adres.pl";
 
     if (!postcode) {
-      postcode = '';
+      postcode = "";
     }
-    postcode = postcode.replace(' ', '').toUpperCase();
-    var ourUrl: string =
+    postcode = postcode.replace(" ", "").toUpperCase();
+    var ourUrl =
       baseUrl +
-      '/' +
+      "/" +
       postcode +
-      '/' +
+      "/" +
       huisnummer +
-      '/' +
+      "/" +
       huisletter +
-      '/' +
+      "/" +
       huisnummertoevoeging;
-    ourUrl = ourUrl.replace(/\/+$/, '');
+    ourUrl = ourUrl.replace(/\/+$/, "");
 
     fetch(ourUrl)
       .then(response => response.json())
@@ -139,14 +145,14 @@ class Lidworden extends Component {
   }
 
   onSubmit() {
-    this.setState({ screenMode: 'submitting' });
-    let url = 'https://lidworden.piratenpartij.nl/cgi-bin/newmember.pl';
+    this.setState({ screenMode: "submitting" });
+    let url = "https://lidworden.piratenpartij.nl/cgi-bin/newmember.pl";
 
     fetch(url, {
-      method: 'post',
+      method: "post",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         voornaam: this.state.formValues.voornaam,
@@ -159,19 +165,19 @@ class Lidworden extends Component {
         email: this.state.formValues.email,
         telefoon: this.state.formValues.telefoon,
         straat: this.state.checkedAddress.straat,
-        plaats: this.state.checkedAddress.woonplaats,
-      }),
+        plaats: this.state.checkedAddress.woonplaats
+      })
     })
       .then(response => response.json())
       .then(responseData => {
         if (responseData.ok == 1) {
-          this.setState({ screenMode: 'submitted' });
+          this.setState({ screenMode: "submitted" });
         } else {
-          this.setState({ screenMode: 'error' });
+          this.setState({ screenMode: "error" });
         }
       })
       .catch(error => {
-        this.setState({ screenMode: 'error' });
+        this.setState({ screenMode: "error" });
       });
   }
 
@@ -184,15 +190,15 @@ class Lidworden extends Component {
       if (this.state.checkedAddress.adres_id) {
         let adr = this.state.checkedAddress;
 
-        let adresRegel = adr.straat + ' ' + adr.huisnummer;
-        if (adr.huisletter && adr.huisletter != '-') {
-          adresRegel += ' ' + adr.huisletter;
+        let adresRegel = adr.straat + " " + adr.huisnummer;
+        if (adr.huisletter && adr.huisletter != "-") {
+          adresRegel += " " + adr.huisletter;
         }
-        if (adr.huisnummertoevoeging && adr.huisnummertoevoeging != '-') {
-          adresRegel += ' ' + adr.huisnummertoevoeging;
+        if (adr.huisnummertoevoeging && adr.huisnummertoevoeging != "-") {
+          adresRegel += " " + adr.huisnummertoevoeging;
         }
 
-        let adresRegel2 = adr.postcode + ' ' + adr.woonplaats;
+        let adresRegel2 = adr.postcode + " " + adr.woonplaats;
 
         adresBlok = (
           <Row>
@@ -204,7 +210,7 @@ class Lidworden extends Component {
                 <p
                   className="form-control form-control-success form-control-static"
                   style={{
-                    height: 'auto',
+                    height: "auto"
                   }}
                   disabled
                 >
@@ -234,7 +240,7 @@ class Lidworden extends Component {
             </option>
             {this.state.checkedAddress.huisletter_lijst.map(letter => (
               <option key={letter} value={letter}>
-                {letter == '-' ? '-geen-' : letter}
+                {letter == "-" ? "-geen-" : letter}
               </option>
             ))}
           </OurInput>
@@ -256,7 +262,7 @@ class Lidworden extends Component {
             {this.state.checkedAddress.huisnummertoevoeging_lijst.map(
               letter => (
                 <option key={letter} value={letter}>
-                  {letter == '-' ? '-geen-' : letter}
+                  {letter == "-" ? "-geen-" : letter}
                 </option>
               )
             )}
@@ -276,7 +282,7 @@ class Lidworden extends Component {
               <p
                 className="form-control form-control-static"
                 style={{
-                  height: 'auto',
+                  height: "auto"
                 }}
                 disabled
               >
@@ -293,7 +299,7 @@ class Lidworden extends Component {
 
     let screenContent;
 
-    if (this.state.screenMode == 'form') {
+    if (this.state.screenMode == "form") {
       screenContent = (
         <Row>
           <Col xs={12} md={4}>
@@ -302,7 +308,7 @@ class Lidworden extends Component {
 
             <p>
               Zij bepalen niet alleen de politieke koers maar zorgen er met hun
-              werk en bijdrage voor dat we kunnen bestaan.{' '}
+              werk en bijdrage voor dat we kunnen bestaan.{" "}
             </p>
 
             <p>Vul hier je gegevens in om lid te worden.</p>
@@ -322,10 +328,11 @@ class Lidworden extends Component {
             <p>De contributie bedraagt € 19,84 per kalenderjaar.</p>
 
             <p>
-              Persoonsgegevens worden verwerkt in overeenkomst met ons{' '}
+              Persoonsgegevens worden verwerkt in overeenkomst met ons{" "}
               <a href="https://piratenpartij.nl/privacybeleid/" target="_blank">
                 privacybeleid
-              </a>.
+              </a>
+              .
             </p>
           </Col>
           <Col xs={12} md={8}>
@@ -375,7 +382,7 @@ class Lidworden extends Component {
                   modifier={this.huisnummerModifier}
                   validator={this.huisnummerValidator.bind(this)}
                   type="number"
-                />{' '}
+                />{" "}
                 {huisletterLijst}
                 {huisnummertoevoegingLijst}
               </Row>
@@ -420,7 +427,7 @@ class Lidworden extends Component {
           </Col>
         </Row>
       );
-    } else if (this.state.screenMode == 'submitted') {
+    } else if (this.state.screenMode == "submitted") {
       screenContent = (
         <div>
           Bedankt voor je aanmelding!
@@ -430,24 +437,24 @@ class Lidworden extends Component {
           je zullen opnemen over de eerste contributiebetaling.
         </div>
       );
-    } else if (this.state.screenMode == 'error') {
+    } else if (this.state.screenMode == "error") {
       screenContent = (
         <div>
           Er is iets fout gegaan bij het versturen van de gegevens.. Neem bij
           aanhoudende problemen s.v.p. contact op met ict@piratenpartij.nl !
         </div>
       );
-    } else if (this.state.screenMode == 'submitting') {
+    } else if (this.state.screenMode == "submitting") {
       screenContent = <div>even geduld...</div>;
     }
 
     return (
-      <Grid>
+      <Container>
         <div className="page-header">
-          <Image src={LogoImg} responsive />
+          <Image src={LogoImg} />
         </div>
         {screenContent}
-      </Grid>
+      </Container>
     );
   }
 }

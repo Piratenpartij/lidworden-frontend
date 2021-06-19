@@ -10,20 +10,20 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        use: ['babel-loader']
       }, {
         test: /\.css$/,
-        loader: 'style!css'
+        use: ['style-loader', 'css-loader']
       }, {
         test: /\.(svg|ttf|woff|woff2|eot)$/,
-        loader: 'file-loader'
+        use: ['file-loader']
       }, {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192'
+        use: ['url-loader?limit=8192']
       } // inline base64 URLs for <=8k images, direct URLs for the rest
 
     ]
@@ -37,7 +37,6 @@ module.exports = {
   ],
 
   devServer: {
-    colors: true,
     historyApiFallback: true,
     inline: true,
     hot: true
