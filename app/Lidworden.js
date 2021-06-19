@@ -311,11 +311,15 @@ class Lidworden extends Component {
               werk en bijdrage voor dat we kunnen bestaan.{" "}
             </p>
 
-            <p>Vul hier je gegevens in om lid te worden.</p>
-
             <p>
-              Je bent daarmee ook automatisch lid van de lokale afdeling van de
-              Piratenpartij.
+              Vul hieronder je gegevens in om lid te worden. Je zult dan een
+              e-mail krijgen waarin je verzocht wordt om contributie te betalen.
+              Als je eerst informatie wilt voordat je lid wordt, stuur je vraag
+              dan naar{" "}
+              <a href="mailto:bestuur@piratenpartij.nl">
+                bestuur@piratenpartij.nl
+              </a>{" "}
+              .
             </p>
 
             <p>Velden gemarkeerd met * zijn verplicht.</p>

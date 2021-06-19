@@ -1,24 +1,31 @@
 @font-face {
-    font-family: 'Helvetica Neue';
-    src:  url('font/LucidaGrande.woff2') format('woff2'),
-          url('font/LucidaGrande.woff') format('woff');
+  font-family: "Helvetica Neue";
+  src: url("font/LucidaGrande.woff2") format("woff2"),
+    url("font/LucidaGrande.woff") format("woff");
 }
 .container {
   margin-bottom: 15px;
 }
 
 .page-header {
-  background: url("img/header_wave_background.png"), url("img/header_boat_background.png");
-  background-size:100% 84%, auto;
+  background: url("img/header_wave_background.png"),
+    url("img/header_boat_background.png");
+  background-size: 100% 84%, auto;
   background-repeat: no-repeat;
-  background-position:  0 center, 75% 96%;
+  background-position: 0 center, 75% 96%;
 }
 
-h1 , .control-label {
+h1,
+.control-label,
+a {
   color: #572b85 !important;
 }
 
 button {
   background-color: #572b85 !important;
   color: white !important;
+}
+
+.btn-primary {
+  border-width: 0 !important;
 }
