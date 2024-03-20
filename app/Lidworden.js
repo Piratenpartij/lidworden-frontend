@@ -329,7 +329,7 @@ class Lidworden extends Component {
               automatisch ingevuld.
             </p>
 
-            <p>De contributie bedraagt € 19,84 per kalenderjaar.</p>
+            <p>De minimum contributie bedraagt € 19,84 per kalenderjaar, maar we hopen dat je €42,- kunt missen.</p>
 
             <p>
               Persoonsgegevens worden verwerkt in overeenkomst met ons{" "}
